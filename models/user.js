@@ -27,6 +27,7 @@ const userSchema = new Schema({
   }
 })
 //TODO come back and check for token OR password before creation
+//TODO not saving a refresh token right now...
 
 const User = mongoose.model('User', userSchema)
 

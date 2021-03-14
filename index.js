@@ -23,6 +23,8 @@ app.get("/", function(req, res, next) {
 });
 
 /* GET Google Authentication API. */
+//TODO not sending refreshToken, even on first sign up
+//TODO try again with force or extra options like offline
 app.get("/auth/google",	passport.authenticate("google", { scope: ["profile", "email"] }));
 
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/", session: false }), function(req, res) {
