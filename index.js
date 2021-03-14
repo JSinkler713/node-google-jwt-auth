@@ -19,7 +19,7 @@ app.get("/", function(req, res, next) {
 });
 
 /* GET Google Authentication API. */
-app.get("/auth/google",	passport.authenticate("google", { scope: ["profile", "email"] }));
+app.get("/auth/google",	passport.authenticate("google", { scope: ["profile", "email"], accessType: 'offline', approvalPrompt: 'force' }));
 
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/", session: false }), function(req, res) {
     console.log('this is the callback')
