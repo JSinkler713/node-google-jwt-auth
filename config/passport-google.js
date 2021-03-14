@@ -14,7 +14,7 @@ passport.use(
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: 'http://localhost:8000/auth/google/callback'
-    //this is where google responds to?
+    //this is where google responds to
   },
     async (accessToken, refreshToken, profile, done)=> {
       const userData = {
@@ -26,9 +26,10 @@ passport.use(
       const foundUser = await db.User.findOne({ email: userData.email})
       if (!foundUser) {
         // we got back validated data from google can safely save a new user
+        // create and hopefully this is first attempt we will save refreshToken
         const newUser = await db.User.create(userData)
         done(null, newUser)
-        //sign JWT
+        //sign JWT in next step
       } else {
         //might want to update refreshToken
         //might want to change to pass the user from the db back
