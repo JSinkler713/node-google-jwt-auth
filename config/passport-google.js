@@ -19,7 +19,8 @@ passport.use(
       const userData = {
         email: profile.emails[0].value,
         name: profile.displayName,
-        token: accessToken
+        token: accessToken,
+        refreshToken: refreshToken //we want this only gets sent on first attempt
       };
       done(null, userData)
     }
