@@ -24,6 +24,8 @@ app.get("/auth/google",	passport.authenticate("google", { scope: ["profile", "em
 app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/", session: false }), function(req, res) {
     console.log('this is the callback')
   console.log(req)
+    //this comes back from the google strategy
+    // we want to make a jwt token and pass through
     const token = req.user.token;
     console.log(token)
     // res.json({ incallback: "I am ffrom the callback" })
