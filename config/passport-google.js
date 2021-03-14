@@ -23,7 +23,7 @@ passport.use(
         token: accessToken,
         refreshToken: refreshToken //we want this only gets sent on first attempt
       };
-      const foundUser = await db.User.findOne({email: userData})
+      const foundUser = await db.User.findOne({ email: userData.email})
       if (!foundUser) {
         // we got back validated data from google can safely save a new user
         const newUser = await db.User.create(userData)

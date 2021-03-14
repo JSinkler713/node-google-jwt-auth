@@ -19,8 +19,9 @@ module.exports = (passport) => {
     passport.use(new Strategy(options, (jwt_payload, done)=> {
       // Have a user that we find by id inside payload
       // check to see if user is in the database
-      console.log(jwt_payload.id)
+      console.log('in the jwt strategy')
       console.log(jwt_payload)
+      console.log(jwt_payload.id)
       User.findById(jwt_payload.id)
         .then(user=> {
           if (user) {
