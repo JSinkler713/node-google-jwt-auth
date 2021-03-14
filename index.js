@@ -57,7 +57,6 @@ app.get("/auth/google/callback", passport.authenticate("google", { failureRedire
 
 app.get("/profile", passport.authenticate("jwt", { session: false }), (req, res)=> {
   console.log('in the profile')
-  console.log(req)
   console.log('req.user')
   console.log(req.user)
   res.json(req.user)

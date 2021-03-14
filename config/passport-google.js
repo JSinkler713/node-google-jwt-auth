@@ -17,6 +17,11 @@ passport.use(
     //this is where google responds to
   },
     async (accessToken, refreshToken, profile, done)=> {
+      console.log('from googie, the accessToken')
+      console.log(accessToken)
+      console.log('from googie, the refreshToken')
+      console.log(refreshToken)
+
       const userData = {
         email: profile.emails[0].value,
         name: profile.displayName,
@@ -33,6 +38,12 @@ passport.use(
       } else {
         //might want to update refreshToken
         //might want to change to pass the user from the db back
+        //is access token the same when do they expire?
+        if (foundUser.token === accessToken) {
+          console.log('the tokens are the same')
+          console.log('founduser.tken', foundUser.token)
+          console.log('accessToken', accessToken)
+        }
         done(null, foundUser)
         //there was a user
         //check the tokens are up to date,
